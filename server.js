@@ -1,4 +1,5 @@
 const express = require('express')
+const compression = require('compression')
 const bodyParser = require('body-parser')
 
 const port = 3000 || process.env.PORT
@@ -24,7 +25,10 @@ const messages = [
 
 const app = express();
 
-app.use("/", express.static('public'))
+app.use(compression())
+
+app.use("/", express.static('public', {maxage: '2h'}))
+app.use("/", express.static('node_modules', {maxage: '2h'}))
 
 app.use("/api", bodyParser.json())
 app.use("/api", bodyParser.urlencoded())
@@ -45,6 +49,11 @@ app.post('/api/login', (req, res) => {
     text: "Error login please try again",
     code: "red"
   });
+});
+
+app.get('/boomerang', (req, res) => {
+  console.log(123, req.query)
+  return res.send();
 });
 
 app.listen(port, () => {
