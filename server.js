@@ -1,6 +1,7 @@
 const express = require('express')
 const compression = require('compression')
 const bodyParser = require('body-parser')
+var cors = require('cors')
 
 const port = 3000 || process.env.PORT
 
@@ -24,6 +25,8 @@ const messages = [
 ]
 
 const app = express();
+
+app.use(cors())
 
 app.use(compression())
 
