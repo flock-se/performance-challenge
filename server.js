@@ -59,6 +59,6 @@ app.get('/boomerang', (req, res) => {
   return res.send();
 });
 
-app.listen(port, "0.0.0.0", () => {
+app.listen(port, () => {
   console.log(`Example app listening on port ${port}!`)
 })
