@@ -3,7 +3,7 @@ const compression = require('compression')
 const bodyParser = require('body-parser')
 var cors = require('cors')
 
-const port = 3000 || process.env.PORT
+const port = process.env.PORT || 3000
 
 const messages = [
   {
@@ -59,6 +59,6 @@ app.get('/boomerang', (req, res) => {
   return res.send();
 });
 
-app.listen(port, () => {
+app.listen(port, "0.0.0.0", () => {
   console.log(`Example app listening on port ${port}!`)
 })
